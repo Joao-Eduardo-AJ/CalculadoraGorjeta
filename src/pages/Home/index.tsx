@@ -6,8 +6,8 @@ import { useState, FormEvent } from 'react';
 export function Home() {
   const [counter, setCounter] = useState(1);
   const [value, setValue] = useState(0);
-  const [gorjeta, setGorjeta] = useState('');
-  const [conta, setConta] = useState('');
+  const [tip, setTip] = useState('');
+  const [account, setAccount] = useState('');
 
   function dratement() {
     // eslint-disable-next-line no-unused-expressions
@@ -20,7 +20,7 @@ export function Home() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    setValue(_ => (+conta * (+gorjeta / 100)) / counter);
+    setValue(_ => (+account * (+tip / 100)) / counter);
   }
 
   return (
@@ -33,8 +33,8 @@ export function Home() {
           inputMode="numeric"
           placeholder="0000"
           className="campos"
-          value={conta}
-          onChange={event => setConta(event.target.value)}
+          value={account}
+          onChange={event => setAccount(event.target.value)}
           onKeyUp={handleSubmit}
         />
         <Input
@@ -43,8 +43,8 @@ export function Home() {
           inputMode="numeric"
           placeholder="00"
           className="campos"
-          value={gorjeta}
-          onChange={event => setGorjeta(event.target.value)}
+          value={tip}
+          onChange={event => setTip(event.target.value)}
           onKeyUp={handleSubmit}
         />
       </div>
