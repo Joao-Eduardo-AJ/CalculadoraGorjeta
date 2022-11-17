@@ -3,30 +3,25 @@ import { Input } from '../../components/Input/Index';
 import { Button } from '../../components/Button/Index';
 import { useState, FormEvent } from 'react';
 
-export function Main() {
-  const [count, setCount] = useState(0);
+export function Home() {
+  const [counter, setCounter] = useState(1);
   const [value, setValue] = useState(0);
   const [gorjeta, setGorjeta] = useState('');
+  const [conta, setConta] = useState('');
 
   function dratement() {
-    setCount(count - 1);
+    // eslint-disable-next-line no-unused-expressions
+    counter > 1 ? setCounter(counter - 1) : '';
   }
 
-  function add() {
-    setCount(count + 1);
+  function increment() {
+    setCounter(counter + 1);
   }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-
-    setValue(prevState => prevState + 2);
+    setValue(_ => (+conta * (+gorjeta / 100)) / counter);
   }
-
-  //
-  //
-  //
-  //
-  //
 
   return (
     <Styled.Form onSubmit={handleSubmit}>
@@ -36,15 +31,21 @@ export function Main() {
           label="Total da Conta (R$):"
           type="text"
           inputMode="numeric"
-          placeholder="0.00"
+          placeholder="0000"
+          className="campos"
+          value={conta}
+          onChange={event => setConta(event.target.value)}
+          onKeyUp={handleSubmit}
         />
         <Input
           label="Gorjeta (%):"
           type="text"
           inputMode="numeric"
           placeholder="00"
+          className="campos"
           value={gorjeta}
-          onChange={event => console.log(event)}
+          onChange={event => setGorjeta(event.target.value)}
+          onKeyUp={handleSubmit}
         />
       </div>
       <footer>
@@ -58,14 +59,14 @@ export function Main() {
               inputMode="numeric"
               placeholder=""
               className="count"
-              value={count}
+              value={counter}
               onChange={_ => setValue(0)}
             />
-            <Button onClick={add}>+</Button>
+            <Button onClick={increment}>+</Button>
           </div>
         </div>
         <div className="container">
-          <h2>Total de gorjetas</h2>
+          <h2 id="txtRes">Total de gorjetas / pessoa</h2>
           <Input
             label=""
             type="text"
@@ -73,7 +74,7 @@ export function Main() {
             placeholder=""
             id="res"
             className="count"
-            value={'R$ ' + value}
+            value={'R$ ' + value.toFixed(2)}
           />
         </div>
       </footer>

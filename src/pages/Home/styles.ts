@@ -11,8 +11,9 @@ export const Form = styled.form`
 
     h2 {
       margin-top: ${theme.spaces[8]};
-      font-size: 1.3rem;
+      font-size: 1rem;
       color: ${theme.colors.gray100};
+      cursor: default;
     }
 
     footer {
@@ -48,9 +49,17 @@ export const Form = styled.form`
       text-align: center;
     }
 
+    .campos {
+      cursor: auto;
+    }
+
+    #txtRes {
+      text-align: right;
+    }
+
     #res {
       font-size: ${theme.spaces[8]};
-      max-width: ${theme.spaces[40]};
+      max-width: ${theme.spaces[64]};
     }
   `}
 `;
